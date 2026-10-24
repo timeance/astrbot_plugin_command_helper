@@ -1,0 +1,2 @@
+# astrbot_plugin_command_helper
+AstrBot 命令提示插件，在用户输入错误但相似的命令的时候，提示正确用法
