@@ -1,0 +1,49 @@
+{
+  "allowed_group_ids": {
+    "description": "提醒生效的群号",
+    "type": "list",
+    "default": [],
+    "hint": "留空时遵循 AstrBot 当前会话的访问控制和插件范围；填写后仅在这些群提醒。不会继承 PhCraft 的群范围。"
+  },
+  "cooldown_seconds": {
+    "description": "同用户同命令提醒间隔（秒）",
+    "type": "int",
+    "default": 30,
+    "hint": "0–3600 秒；同群同用户同一命令在间隔内只提醒一次，重复错误仍停止本次 AI 聊天。"
+  },
+  "hint_mode": {
+    "description": "提醒模式",
+    "type": "string",
+    "options": ["无大模型", "仅大模型提示", "大模型+提醒"],
+    "default": "无大模型",
+    "hint": "无大模型：只发具体原因和重发示例；仅大模型提示：由模型生成一句提示；大模型+提醒：一句模型提示加具体用法。模型失败时均退回具体用法提醒。"
+  },
+  "llm_provider_id": {
+    "description": "提醒使用的聊天模型",
+    "type": "string",
+    "_special": "select_provider",
+    "default": "",
+    "hint": "留空使用当前会话的聊天模型。仅在开启大模型模式且确需提醒时，将本条输入和候选用法发送到该模型；不读取聊天历史。"
+  },
+  "command_overrides": {
+    "description": "补充命令用法规则",
+    "type": "template_list",
+    "default": [],
+    "templates": {
+      "command": {
+        "name": "命令用法补充",
+        "display_item": "handler",
+        "items": {
+          "plugin": {"description": "插件标识（metadata.yaml 的 name）", "type": "string", "default": ""},
+          "handler": {"description": "处理器方法名", "type": "string", "default": ""},
+          "usage": {"description": "用法示例", "type": "string", "default": "", "hint": "使用 {command} 引用运行时当前命令名，例如 {command} <游戏ID>。"},
+          "require_at": {"description": "必须真正 @机器人", "type": "bool", "default": false},
+          "argument_pattern": {"description": "完整参数格式（正则）", "type": "string", "default": "", "hint": "可留空。按完整参数匹配，例如 [A-Za-z0-9_]{3,16}。仅用于识别提醒，不改变业务校验。"},
+          "hint_aliases": {"description": "提示别名", "type": "list", "default": [], "hint": "仅在真正 @机器人时提供用法建议，不会注册或执行新命令。"},
+          "allow_plus": {"description": "将命令和参数之间的加号识别为误分隔符", "type": "bool", "default": false},
+          "allow_custom_filters": {"description": "允许提示含未知自定义过滤器的命令", "type": "bool", "default": false, "hint": "默认跳过这些命令。开启表示你已确认其隐藏群范围和权限适合当前提醒范围；不会调用未知过滤器。原生权限仍检查，PhCraft 已知权限仍检查。"}
+        }
+      }
+    }
+  }
+}

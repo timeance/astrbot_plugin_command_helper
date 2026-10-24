@@ -1,0 +1,9 @@
+name: astrbot_plugin_command_helper
+display_name: 命令提示助手
+author: timeance
+version: 0.1.1
+desc: 细化命令错误及重发用法，支持三种大模型提醒模式，自动适配 PhCraft；提醒后停止本次聊天。
+repo: https://github.com/timeance/astrbot_plugin_command_helper
+support_platforms:
+  - aiocqhttp
+astrbot_version: '>=4.27.3,<4.29.0'
