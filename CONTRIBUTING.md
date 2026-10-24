@@ -29,7 +29,16 @@ python -m ruff check .
 python -m ruff format --check .
 ```
 
-`test_phcraft_framework.py` 是可选适配的独立集成测试，需要对应源码和依赖。完整运行方式、固定源码提交和两个 AstrBot 版本的测试矩阵见 [CI 配置](.github/workflows/ci.yml)。本地缺少环境时会跳过相关测试；CI 不允许跳过。
+公开 CI 运行通用分派和适配规则测试，不依赖其他业务插件的源码。两个 AstrBot 版本及固定提交见 [CI 配置](.github/workflows/ci.yml)。CI 不允许跳过测试。
+
+`test_phcraft_framework.py` 是本地可选的真实适配集成测试。已有对应源码及访问权限时，安装其依赖，并将 `PHCRAFT_SOURCE` 设为源码的绝对路径后运行：
+
+```sh
+python -m pip install -r "$PHCRAFT_SOURCE/requirements.txt"
+python -m pytest -q tests/test_phcraft_framework.py
+```
+
+本地未指定源码时，这组测试会跳过。
 
 修改消息处理时，至少检查正确命令放行、错误提醒只发一次、权限与会话范围、冷却期阻止聊天。不要用伪造的 AstrBot 模块替代分派测试；模型回复可以模拟，真实模型和 QQ 收发需单独验收。
 
