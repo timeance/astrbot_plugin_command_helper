@@ -100,7 +100,7 @@ https://github.com/timeance/astrbot_plugin_command_helper
 开发检查：
 
 ```powershell
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements-dev.txt -r tests/requirements-framework.txt
 # 指向已安装依赖的 AstrBot 源码，使用独立测试数据目录
 $env:PYTHONPATH = "C:\src\AstrBot"
 $env:ASTRBOT_ROOT = "$env:TEMP\command-helper-test"
@@ -112,7 +112,13 @@ python scripts/package.py
 
 测试位于 `tests/`，缺少所需运行环境的集成测试会跳过。打包结果位于 `dist/`，包含安装 ZIP 和 SHA-256 校验文件。
 
+GitHub Actions 在 PR、`main` 更新和手动触发时运行 Ruff、安装包校验及两个 AstrBot 版本的测试。CI 会检查实际框架版本，拒绝跳过测试，并保存测试报告和安装包 7 天。
+
 使用前在测试群检查真实 @、同名机器人、关键词聊天插件的执行顺序和重复错误提醒。提醒器优先级为 1000，更早执行的插件或过滤器已发送的消息无法撤回。插件依赖 AstrBot 内部命令注册表，兼容范围以已验证版本为准。
+
+## 反馈与贡献
+
+问题反馈请提交 [Issue](https://github.com/timeance/astrbot_plugin_command_helper/issues)，附上版本、复现步骤、预期结果和脱敏日志。开发环境和 PR 要求见 [贡献指南](CONTRIBUTING.md)，功能变化见 [版本记录](CHANGELOG.md)。
 
 ## 许可与参考
 
