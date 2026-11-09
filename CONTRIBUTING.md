@@ -18,10 +18,10 @@
 python -m pip install -r requirements-dev.txt -r tests/requirements-framework.txt
 ```
 
-测试需要 AstrBot 源码及其导入依赖，但不启动机器人、不连接模型或 QQ。下面以 Bash 和 4.28.0 为例，在仓库目录执行：
+测试需要 AstrBot 源码及其导入依赖，但不启动机器人、不连接模型或 QQ。下面以 Bash 和 4.29.4 为例，在仓库目录执行：
 
 ```sh
-git clone --depth 1 --branch v4.28.0 https://github.com/AstrBotDevs/AstrBot ../AstrBot-test
+git clone --depth 1 --branch v4.29.4 https://github.com/AstrBotDevs/AstrBot ../AstrBot-test
 export PYTHONPATH="$(cd ../AstrBot-test && pwd)"
 export ASTRBOT_ROOT="$(mktemp -d)"
 python -m pytest -q --ignore=tests/test_phcraft_framework.py
@@ -29,7 +29,7 @@ python -m ruff check .
 python -m ruff format --check .
 ```
 
-公开 CI 运行通用分派和适配规则测试，不依赖其他业务插件的源码。两个 AstrBot 版本及固定提交见 [CI 配置](.github/workflows/ci.yml)。CI 不允许跳过测试。
+公开 CI 运行通用分派和适配规则测试，不依赖其他业务插件的源码。AstrBot 4.27.3、4.28.0、4.29.4 及固定提交见 [CI 配置](.github/workflows/ci.yml)。CI 固定版本用于复现测试，不限制宿主加载；元数据仅保留最低要求。CI 不允许跳过测试。
 
 `test_phcraft_framework.py` 是本地可选的真实适配集成测试。已有对应源码及访问权限时，安装其依赖，并将 `PHCRAFT_SOURCE` 设为源码的绝对路径后运行：
 

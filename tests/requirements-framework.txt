@@ -1,4 +1,4 @@
-# Import dependencies for the real AstrBot 4.27.3 / 4.28.0 dispatch tests.
+# Import dependencies for the real AstrBot 4.27.3 / 4.28.0 / 4.29.4 dispatch tests.
 # AstrBot source is checked out separately; these are not plugin runtime dependencies.
 aiofiles>=25.1.0
 aiohttp>=3.11.18,<4
