@@ -59,6 +59,8 @@ jobs:
             ref: 19c029e36da451e4bef15a1adecba89dcef5e008
           - astrbot: '4.28.0'
             ref: a412146401426c0cdff8bbefb8627a03da519da8
+          - astrbot: '4.29.4'
+            ref: 61335414433db721b3f7ecc93f90deafe0a59d78
     env:
       PYTHONPATH: ${{ github.workspace }}/.ci/astrbot
       ASTRBOT_ROOT: ${{ github.workspace }}/.ci/data-${{ matrix.astrbot }}
